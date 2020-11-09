@@ -62,3 +62,13 @@ ví dụ
 ```js
 [style.color]="color_name", [style.color] = true ? màu 1: màu 2"
 ```
+## Truyền sự kiện từ view sang component thông qua event binding
+Cú pháp `(click)="onClickMe()`
+```js
+<button type="button" class="btn btn-primary" (click)="onClickMe()">Click Me !</button>
+
+
+onClickMe(){
+    alert("hello");
+}
+```
