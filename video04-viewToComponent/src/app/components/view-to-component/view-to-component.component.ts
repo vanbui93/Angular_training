@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewToComponentComponent implements OnInit {
   public title: string = "Event binding";
+  public count: number = 0;
+  public username: string='';
   constructor() { }
 
   ngOnInit(): void {
@@ -14,6 +16,19 @@ export class ViewToComponentComponent implements OnInit {
   
   onClickMe(e){
     console.log("hello",e.target.innerText);
+  }
+
+  onDbClickMe(e){
+    console.log(e.target.innerText);
+  }
+
+  onIncrease(){
+    this.count ++
+  }
+
+  onKeyUp(e){
+    console.log(e.target.value);
+    this.username = e.target.value;
   }
 
 }

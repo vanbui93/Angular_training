@@ -60,15 +60,29 @@ Cú pháp `[style.style_name] = "value"`<br>
 >note: chỉ áp dụng cho 1 style
 ví dụ
 ```js
-[style.color]="color_name", [style.color] = true ? màu 1: màu 2"
+<div [style.background-color]="isSpeacial ? 'red' : 'cyan'"
+    [style.color]="'white'"
+    [style.font-size.px] = "size">
+    Lập trình angular Style binding
+</div>
 ```
+
 ## Truyền sự kiện từ view sang component thông qua event binding
 Cú pháp `(click)="onClickMe()`
 ```js
 <button type="button" class="btn btn-primary" (click)="onClickMe()">Click Me !</button>
 
-
 onClickMe(){
     alert("hello");
+}
+```
+
+## Handle Click form
+
+```js
+<input type="text" class="form-control" (keyup)="onKeyUp($event)">
+
+onKeyUp(e){
+console.log(e.target.value);
 }
 ```
