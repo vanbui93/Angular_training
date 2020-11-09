@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class TwoWayBindingComponent implements OnInit {
   public title:string='Two way binding';
   public name:string='';
+  public gender: number = 0 //0 -> Nam | 1 -> Nữ
   constructor() {
 
   }

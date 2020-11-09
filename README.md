@@ -98,3 +98,15 @@ public name:string='';
 //file html
  <input type="text" class="form-control" [(ngModel)]="name"/>
  ```
+ - Nếu đưa vào trong thẻ `<form>` cần phải có thêm `[ngModelOptions]="{standalone: true}"`
+```js
+<form action="">
+  <div class="form-group">
+    <label>Họ tên: {{name}} </label>
+    <input type="text" 
+      class="form-control" 
+      [(ngModel)]="name"
+      [ngModelOptions]="{standalone: true}"/>
+  </div>
+</form>
+```

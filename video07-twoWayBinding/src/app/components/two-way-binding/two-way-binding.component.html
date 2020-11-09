@@ -1,6 +1,23 @@
 <p>two-way-binding works!</p>
 <h2>{{title}}</h2>
-<div class="form-group">
-  <label>Họ tên: {{name}} </label>
-  <input type="text" class="form-control" [(ngModel)]="name"/>
-</div>
+
+<form action="">
+  <div class="form-group">
+    <label>Họ tên: {{name}} </label>
+    <input type="text" 
+      class="form-control" 
+      [(ngModel)]="name"
+      [ngModelOptions]="{standalone: true}"/>
+  </div>
+  
+  <div class="form-group">
+    <label>Giới tính: </label><span>{{gender == 0 ? 'Nam' : 'Nữ'}}</span>
+    <select 
+      class="form-control" 
+      [(ngModel)]="gender"
+      [ngModelOptions]="{standalone: true}">
+      <option value="0">Nam</option>
+      <option value="1">Nữ</option>
+    </select>
+  </div>
+</form>
