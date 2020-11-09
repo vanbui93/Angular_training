@@ -1,6 +1,77 @@
 <h3>Component to view</h3>
+<hr/>
+<h1>Tìm hiểu về interpolation</h1>
 <h5>Tên: {{ user.name }}</h5>
 <h5>Tuổi: {{ user.age }}</h5>
 <p>Tình trạng hôn nhân: {{ user.isMarried ? "Đã kết hôn" : "Độc thân"}}</p>
 <h2>{{ showInfo() }}</h2>
-<a href="{{link}}"><img src="{{imgLink}}" alt="" width="200">{{textLink}}</a>
+<a href="{{link}}">
+    <img src="{{imgLink}}" alt="" width="200">
+    {{textLink}}
+</a>
+<hr/>
+<h1>Tìm hiểu về property binding</h1>
+<h2>property src</h2>
+<img [src]="imgLink" alt="'Hình kênh 14'" [width]="imgWidth"><br>
+<hr class="mb-5">
+
+<h2>property value</h2>
+<input type="text" class="form-control" [value]="name"/>
+
+<hr class="mb-5">
+<h2>property disable</h2><br>
+<button 
+    type="button"
+    class="btn btn-primary"
+    [disabled]="isValid">
+    Đăng nhập
+</button>
+<hr class="mb-5">
+
+<h2>Attribute binding</h2>
+<table [attr.border]="tbBoder" [attr.width] = "tbWidth">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ tên</th>
+            <th>Sdt</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row">1</td>
+            <td>abc</td>
+            <td>123456</td>
+        </tr>
+    </tbody>
+</table>
+<hr class="mb-5">
+<h2>Class binding</h2>
+<table [class.table]="isBorder">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ tên</th>
+            <th>Sdt</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row">1</td>
+            <td>abc</td>
+            <td>123456</td>
+        </tr>
+    </tbody>
+</table>
+<span class="badge" 
+    [class.badge-danger] = "isCheck===1"
+    [class.badge-success] = "isCheck !==1"
+>Label
+</span>
+
+<hr class="mb-5">
+<h2>Style binding</h2>
+<div [style.background-color]="isSpeacial ? 'red' : 'cyan'"
+    [style.color]="'white'"
+    [style.font-size.px] = "size"
+    >Lập trình angular Style binding</div>
