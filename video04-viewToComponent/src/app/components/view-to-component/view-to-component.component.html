@@ -12,3 +12,9 @@
   <p>{{username}}</p>
   <input type="text" class="form-control" (keyup)="onKeyUp($event)">
 </div>
+
+<div class="form-group">
+    <span>Enter thì mới in ra</span>
+    <input type="text" class="form-control" (keyup.enter)="onKeyUpEnter($event)">
+    <label>Kết quả: {{name}}</label>
+  </div>

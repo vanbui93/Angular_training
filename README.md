@@ -77,7 +77,8 @@ onClickMe(){
 }
 ```
 
-## Handle Click form
+## Event Binding - Handle Click form
+cú pháp `(keyup)="handleKeyUp($event)`
 
 ```js
 <input type="text" class="form-control" (keyup)="onKeyUp($event)">

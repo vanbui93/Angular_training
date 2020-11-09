@@ -9,6 +9,7 @@ export class ViewToComponentComponent implements OnInit {
   public title: string = "Event binding";
   public count: number = 0;
   public username: string='';
+  public name: string='';
   constructor() { }
 
   ngOnInit(): void {
@@ -29,6 +30,10 @@ export class ViewToComponentComponent implements OnInit {
   onKeyUp(e){
     console.log(e.target.value);
     this.username = e.target.value;
+  }
+
+  onKeyUpEnter(e){
+    this.name = e.target.value;
   }
 
 }
