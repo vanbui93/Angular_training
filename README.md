@@ -87,3 +87,14 @@ onKeyUp(e){
 console.log(e.target.value);
 }
 ```
+
+## Two way binding - binding 2 chiều
+View -> Component -> View
+- Cú pháp `[(ngModel)]="name"`
+```js
+//file ts
+public name:string='';
+
+//file html
+ <input type="text" class="form-control" [(ngModel)]="name"/>
+ ```
