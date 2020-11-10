@@ -7,7 +7,8 @@ import { NgIfStructuralComponent } from './components/ng-if-structural/ng-if-str
 import { NgForStructuralComponent } from './components/ng-for-structural/ng-for-structural.component';
 import { NgForCombineNgIfComponent } from './components/ng-for-combine-ng-if/ng-for-combine-ng-if.component';
 import { NgSwichCaseStructuralComponent } from './components/ng-swich-case-structural/ng-swich-case-structural.component';
-import { AttributeStructuralComponent } from './components/attribute-structural/attribute-structural.component';
+import { NgClassAttributeComponent } from './components/ng-class-attribute/ng-class-attribute.component';
+import { NgStyleAttributeComponent } from './components/ng-style-attribute/ng-style-attribute.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AttributeStructuralComponent } from './components/attribute-structural/
     NgForStructuralComponent,
     NgForCombineNgIfComponent,
     NgSwichCaseStructuralComponent,
-    AttributeStructuralComponent
+    NgClassAttributeComponent,
+    NgStyleAttributeComponent
   ],
   imports: [
     BrowserModule,

@@ -281,3 +281,22 @@ setClasses(){
 }
 ```
 #### ngStyle
+- Sử dụng tương tự ngClass
+```js
+<p
+    [ngStyle]="{
+        'color': isSpecial ? 'red' : '',
+        'border': isSpecial ? '2px solid blue' : '',
+        'padding.px' : isSpecial ? '10':''
+    }"
+    (click)="changeColor()"
+>
+    click me để đổi màu
+</p>
+
+//
+public isSpecial : boolean = true;
+changeColor(){
+    this.isSpecial=!this.isSpecial
+}
+```

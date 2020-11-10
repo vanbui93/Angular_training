@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-attribute-structural',
-  templateUrl: './attribute-structural.component.html',
-  styleUrls: ['./attribute-structural.component.css']
+  selector: 'app-ng-class-attribute',
+  templateUrl: './ng-class-attribute.component.html',
+  styleUrls: ['./ng-class-attribute.component.css']
 })
-export class AttributeStructuralComponent implements OnInit {
+export class NgClassAttributeComponent implements OnInit {
   public isSpecial : boolean = true;
   constructor() { }
 
