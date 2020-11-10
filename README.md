@@ -170,21 +170,55 @@ ví dụ tiếp theo, đưa `ngIf` vào thẻ `<ng-container>`
 #### ngFor
 
 - Cú pháp `*ngFor="let item of list"`
-**Các biến cục bộ của ngFor:**
-- index: chỉ số hiện tại
-- first: trả về true nếu là phần tử đầu tiên
-- last: trả về true nếu là phần tử cuối
-- even: trả về true nếu là phần tử chẵn
-- odd: trả về true nếu là phần tử lẻ
-- trackBy: Dữ liệu đầu vào (item,index) => return về thuộc tính duy nhất (vd id, isbn, mã,vv)
-
-
 ```js
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let item of names">
         {{item}}
     </li>
 </ul>
+```
+**Các biến cục bộ của ngFor:**
+- index: chỉ số hiện tại
+- first: trả về true nếu là phần tử đầu tiên
+- last: trả về true nếu là phần tử cuối
+- even: trả về true nếu là phần tử chẵn
+- odd: trả về true nếu là phần tử lẻ
+- trackBy: Dữ liệu đầu vào (item,index) => return về thuộc tính duy nhất (vd id, isbn, mã,vv)<br>
+
+Ví dụ về các biến cục bộ, đổ màu cho dòng chẳn, lẻ, đầu, cuối của 1 table
+`trackBy: myTrachById` chỉ load lại dữ liệu khác dựa trên id
+```js
+<tbody>
+    <tr 
+        *ngFor="let item of products; 
+        let i = index 
+        let f = first 
+        let l = last
+        let e = even
+        let o = odd
+        trackBy: myTrachById"
+
+        [style.background-color]="
+        f===true ?'gray':
+        l ===true ? 'cyan':
+        e===true ?'blue':'yellow'"
+        
+    >
+        <td scope="row">{{i + 1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.price}} VNĐ</td>
+    </tr>
+</tbody>
+<button type="button" class="btn btn-primary" (click)="onLoadData()">Lấy dữ liệu</button>
+
+//
+myTrachById(item,index) {
+return item
+}
+onLoadData(){
+    this.products = this.productsFromServe;
+}
+
 ```
 - ngSwich
 ### Attribute directives

@@ -1,11 +1,27 @@
-<p>ng-for-structural works!</p>
-
+<h6>ng-for-structural works!</h6>
 <ul class="list-group mb-5">
     <li class="list-group-item" *ngFor="let item of names">
         {{item}}
     </li>
 </ul>
 
+<h6>Cách 2 sử dụng ngFor bằng thẻ `ng-template`</h6>
+<ul class="list-group mb-5">
+    <ng-template ngFor let-item [ngForOf]="names" let-i="index" let-odd="odd">
+        <li class="list-group-item">({{i}}) {{item}}</li>
+    </ng-template>
+</ul>
+
+<hr>
+<h4>Các biến cục bộ của ngFor:</h4>
+<ul class="list-group">
+    <li>- index: chỉ số hiện tại</li>
+    <li>- first: trả về true nếu là phần tử đầu tiên</li>
+    <li>- last: trả về true nếu là phần tử cuối</li>
+    <li>- even: trả về true nếu là phần tử chẵn</li>
+    <li>- odd: trả về true nếu là phần tử lẻ</li>
+    <li>- trackBy: <b>trackBy: myTrachById</b> chỉ load lại dữ liệu khác dựa trên id<br>Dữ liệu đầu vào (item,index) => return về thuộc tính duy nhất (vd id, isbn, mã,vv)</li>
+</ul>
 <table class="table">
     <thead>
         <tr>
@@ -16,8 +32,19 @@
     </thead>
     <tbody>
         <tr 
-            *ngFor="let item of products; let i = index let f = first"
-            [style.background-color]=" f===true ? 'gray' : '' "
+            *ngFor="let item of products; 
+            let i = index 
+            let f = first 
+            let l = last
+            let e = even
+            let o = odd
+            trackBy: myTrachById"
+
+            [style.background-color]="
+            f===true ?'gray':
+            l ===true ? 'cyan':
+            e===true ?'blue':'yellow'"
+            
         >
             <td scope="row">{{i + 1}}</td>
             <td>{{item.name}}</td>
@@ -25,3 +52,4 @@
         </tr>
     </tbody>
 </table>
+<button type="button" class="btn btn-primary" (click)="onLoadData()">Lấy dữ liệu</button>

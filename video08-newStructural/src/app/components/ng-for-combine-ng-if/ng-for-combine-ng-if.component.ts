@@ -1,29 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-ng-for-structural',
-  templateUrl: './ng-for-structural.component.html',
-  styleUrls: ['./ng-for-structural.component.css']
+  selector: 'app-ng-for-combine-ng-if',
+  templateUrl: './ng-for-combine-ng-if.component.html',
+  styleUrls: ['./ng-for-combine-ng-if.component.css']
 })
-export class NgForStructuralComponent implements OnInit {
+export class NgForCombineNgIfComponent implements OnInit {
   public names : string[] = ["TpHCM", "Hà Nội", "Đà Nẵng", "Hải Phòng"];
-  public products : any[] = [
-    {
-      id: 1,
-      name: "Iphone 11 plus",
-      price: 1500000
-    },
-    {
-      id: 2,
-      name: "Iphone XS Max",
-      price: 3200000
-    },
-    {
-      id: 3,
-      name: "Samsung note 10",
-      price: 2100000
-    }
-  ]
+  public products : any[] = []
 
   public productsFromServe : any[] = [
     {
@@ -52,7 +36,6 @@ export class NgForStructuralComponent implements OnInit {
       price: 1600000
     }
   ]
-
   constructor() { }
 
   ngOnInit(): void {
