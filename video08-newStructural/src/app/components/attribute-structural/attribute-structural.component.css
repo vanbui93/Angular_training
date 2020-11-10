@@ -1,7 +1,13 @@
 .bg-orange {
     background: orange;
 }
-.cl-green{
+.bg-purple {
+    background: rgb(255, 0, 212);
+}
+.bg-blue {
+    background: rgb(0, 183, 255);
+}
+.cl-white{
     color: white;
 }
 .pd-10{
