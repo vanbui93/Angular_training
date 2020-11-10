@@ -1,0 +1,19 @@
+<ul class="list-group">
+    <li class="list-group-item" 
+        *ngFor="let user of usersList"
+        [ngSwitch]="user.country"
+    >
+        <span *ngSwitchCase="'VN'" class="text-danger">
+            {{user.name}} - {{user.country}}
+        </span>
+        <span *ngSwitchCase="'USA'" class="text-primary">
+            {{user.name}} - {{user.country}}
+        </span>
+        <span *ngSwitchCase="'UK'" class="text-success">
+            {{user.name}} - {{user.country}}
+        </span>
+        <span *ngSwitchDefault class="text-warning">
+            {{user.name}} - {{user.country}}
+        </span>
+    </li>
+</ul>

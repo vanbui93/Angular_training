@@ -220,5 +220,37 @@ onLoadData(){
 }
 
 ```
-- ngSwich
+#### ngSwichCase
+- Dùng để thay thế cho việc *ngIf lặp lại nhiều lần
+- các biến cần quan tâm: [ngSwich], *ngSwichCase, *ngSwichDefault
+
+```js
+<li class="list-group-item" 
+    *ngFor="let user of usersList"
+    [ngSwitch]="user.country"
+>
+    <span *ngSwitchCase="'VN'" class="text-danger">
+        {{user.name}} - {{user.country}}
+    </span>
+    <span *ngSwitchCase="'USA'" class="text-primary">
+        {{user.name}} - {{user.country}}
+    </span>
+    <span *ngSwitchDefault class="text-warning">
+        {{user.name}} - {{user.country}}
+    </span>
+</li>
+```
 ### Attribute directives
+
+#### ngClass
+- Dùng để thêm hoặc xóa nhiều CSS class cùng 1 lúc => ngClass
+- Viết trực tiếp trong Template hoặc Class Typescript
+- Cú pháp, có nhiều cách viết:
+[ngClass]=[]<br>
+<some-element [ngClass]="'first second'">...</some-element><br>
+<some-element [ngClass]="['first', 'second']">...</some-element><br>
+<some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element><br>
+<some-element [ngClass]="stringExp|arrayExp|objExp">...</some-element><br>
+<some-element [ngClass]="{'class1 class2 class3' : true}">...</some-element>
+
+#### ngStyle

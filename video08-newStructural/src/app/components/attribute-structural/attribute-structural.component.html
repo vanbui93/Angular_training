@@ -1,0 +1,21 @@
+<p>attribute-structural works!</p>
+<p
+    [class.bg-orange]="true"
+    [class.cl-green]="true"
+    [class.pd-10]="true"
+>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum exercitationem expedita nihil assumenda iste consequatur ducimus? Velit repudiandae alias at itaque enim laborum exercitationem repellendus, blanditiis cum officiis ex iusto.
+</p>
+
+<!-- ngClass -->
+<p
+    [ngClass]="{'bg-orange cl-green pd-10' : true}"
+>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum exercitationem expedita nihil assumenda iste consequatur ducimus? Velit repudiandae alias at itaque enim laborum exercitationem repellendus, blanditiis cum officiis ex iusto.
+</p>
+
+<p
+    [ngClass]="['bg-orange', 'cl-green', 'pd-10']"
+>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum exercitationem expedita nihil assumenda iste consequatur ducimus? Velit repudiandae alias at itaque enim laborum exercitationem repellendus, blanditiis cum officiis ex iusto.
+</p>
