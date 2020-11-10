@@ -110,3 +110,11 @@ public name:string='';
   </div>
 </form>
 ```
+
+## Build-in Directives
+- Là một thành phần mở rộng HTML, hay nói cách khác là các thuộc tính property mà **Angular** định nghĩa thêm, vì nó là của angular nên phải tuân thủ nguyên tắc
+### Structural directives
+- ngIF -> else ?
+- ngFor
+- ngSwich
+### Attribute directives
