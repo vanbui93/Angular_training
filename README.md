@@ -115,6 +115,67 @@ public name:string='';
 - Là một thành phần mở rộng HTML, hay nói cách khác là các thuộc tính property mà **Angular** định nghĩa thêm, vì nó là của angular nên phải tuân thủ nguyên tắc
 ### Structural directives
 - ngIF -> else ?
+Cú pháp `*ngIf="expression"`
+Ví dụ 
+```js
+//.html
+<div class="form-check form-check-inline">
+    <label class="form-check-label mr-2">
+        <input class="form-check-input" type="radio" name="rdCheck" (click)="onChange(true)">Hợp lệ
+    </label>
+    <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="rdCheck" (click)="onChange(false)">Không hợp lệ
+    </label>
+</div>
+
+<h3 *ngIf="isChecked; else elseKhongHopLe">Hợp Lệ</h3>
+<ng-template #elseKhongHopLe>
+    <h3>Không hợp Lệ</h3>
+</ng-template>
+
+//.ts
+public isChecked : boolean = false;
+
+onChange(value) {
+    this.isChecked=value
+}
+```
+
+#### Lưu ý sử dụng form 
+Cần import thư viện form module vào `app.module.ts`
+```js
+import { FormsModule } from '@angular/forms'
+
+imports: [
+    //...
+    FormsModule,
+],
+```
+ví dụ tiếp theo, đưa `ngIf` vào thẻ `<ng-container>`
+```js
+<div class="form-group">
+  <label>Tuổi: </label>
+  <input type="text" name="" class="form-control" [(ngModel)]="age" >
+</div>
+
+<ng-container *ngIf="age > 18; else elseAge">
+    <h3>Đủ tuổi</h3>  
+</ng-container>
+<ng-template #elseAge>
+    <h3>Chưa đủ tuổi</h3>
+</ng-template>
+```
+
 - ngFor
+
+Cú pháp `*ngFor="let item of list"`
+
+```js
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of names">
+        {{item}}
+    </li>
+</ul>
+```
 - ngSwich
 ### Attribute directives

@@ -1,0 +1,32 @@
+<h4 *ngIf="isShow">{{username}}</h4>
+<button type="button" class="btn btn-primary" (click)="onToggle()">Toggle</button>
+<hr>
+
+<div class="form-check form-check-inline">
+    <label class="form-check-label mr-2">
+        <input class="form-check-input" type="radio" name="rdCheck" (click)="onChange(true)">Hợp lệ
+    </label>
+    <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="rdCheck" (click)="onChange(false)">Không hợp lệ
+    </label>
+</div>
+
+<h3 *ngIf="isChecked; else elseKhongHopLe">Hợp Lệ</h3>
+<ng-template #elseKhongHopLe>
+    <h3>Không hợp Lệ</h3>
+</ng-template>
+<hr>
+
+<div class="form-group">
+  <label>Tuổi: </label>
+  <input type="text" name="" class="form-control" [(ngModel)]="age" >
+</div>
+
+<ng-container *ngIf="age > 18; else elseAge">
+    <h3>Đủ tuổi</h3>  
+</ng-container>
+<ng-template #elseAge>
+    <h3>Chưa đủ tuổi</h3>
+</ng-template>
+<hr>
+<hr>

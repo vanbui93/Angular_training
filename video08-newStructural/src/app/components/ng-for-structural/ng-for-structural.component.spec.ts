@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StructuralComponent } from './structural.component';
+import { NgForStructuralComponent } from './ng-for-structural.component';
 
-describe('StructuralComponent', () => {
-  let component: StructuralComponent;
-  let fixture: ComponentFixture<StructuralComponent>;
+describe('NgForStructuralComponent', () => {
+  let component: NgForStructuralComponent;
+  let fixture: ComponentFixture<NgForStructuralComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StructuralComponent ]
+      declarations: [ NgForStructuralComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StructuralComponent);
+    fixture = TestBed.createComponent(NgForStructuralComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
