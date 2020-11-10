@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./attribute-structural.component.css']
 })
 export class AttributeStructuralComponent implements OnInit {
-
+  public isSpecial : boolean = true;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onToggleClass() {
+    this.isSpecial=!this.isSpecial;
+  }
+
+  setClasses(){
+    return {
+      'bg-purple' : this.isSpecial,
+      'pd-10': this.isSpecial,
+      'cl-white': this.isSpecial
+    }
   }
 
 }

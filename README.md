@@ -252,5 +252,32 @@ onLoadData(){
 <some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element><br>
 <some-element [ngClass]="stringExp|arrayExp|objExp">...</some-element><br>
 <some-element [ngClass]="{'class1 class2 class3' : true}">...</some-element>
+- Ví dụ `ngClass` Thay đổi class dựa trên điều kiện
+```js
+public isSpecial : boolean = true;
 
+<p
+    [ngClass]="{
+        'bg-green' : isSpecial,
+        'pd-10': isSpecial
+    }"
+>
+```
+- Sử dụng ngClass trong function typeScript
+
+```js
+<p
+    [ngClass]="setClasses()"
+>
+    Thêm class bằng function() trong TypeScript
+</p>
+
+setClasses(){
+    return {
+      'bg-purple' : this.isSpecial,
+      'pd-10': this.isSpecial,
+      'cl-white': this.isSpecial
+    }
+}
+```
 #### ngStyle

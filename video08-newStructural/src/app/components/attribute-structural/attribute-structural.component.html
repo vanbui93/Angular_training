@@ -19,3 +19,20 @@
 >
 Text 3
 </p>
+
+<p>Speacial {{isSpecial}}</p>
+<p
+    [ngClass]="{
+        'bg-green' : isSpecial,
+        'pd-10': isSpecial,
+        'cl-white': isSpecial
+    }"
+>
+    Thay đổi class dựa trên điều kiện<br>add class="bg-green" khi điều kiện true
+</p>
+<button type="button" class="btn btn-primary mb-5" (click)="onToggleClass()">Toggle Class</button>
+<p
+    [ngClass]="setClasses()"
+>
+    Thêm class bằng function() trong TypeScript
+</p>
