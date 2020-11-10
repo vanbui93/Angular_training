@@ -114,7 +114,8 @@ public name:string='';
 ## Build-in Directives
 - Là một thành phần mở rộng HTML, hay nói cách khác là các thuộc tính property mà **Angular** định nghĩa thêm, vì nó là của angular nên phải tuân thủ nguyên tắc
 ### Structural directives
-- ngIF -> else ?
+
+#### ngIF -> else ?
 Cú pháp `*ngIf="expression"`
 Ví dụ 
 ```js
@@ -166,9 +167,17 @@ ví dụ tiếp theo, đưa `ngIf` vào thẻ `<ng-container>`
 </ng-template>
 ```
 
-- ngFor
+#### ngFor
 
-Cú pháp `*ngFor="let item of list"`
+- Cú pháp `*ngFor="let item of list"`
+**Các biến cục bộ của ngFor:**
+- index: chỉ số hiện tại
+- first: trả về true nếu là phần tử đầu tiên
+- last: trả về true nếu là phần tử cuối
+- even: trả về true nếu là phần tử chẵn
+- odd: trả về true nếu là phần tử lẻ
+- trackBy: Dữ liệu đầu vào (item,index) => return về thuộc tính duy nhất (vd id, isbn, mã,vv)
+
 
 ```js
 <ul class="list-group">
