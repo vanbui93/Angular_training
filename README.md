@@ -304,6 +304,8 @@ changeColor(){
 https://stackblitz.com/
 
 ## Input
+Link demo: https://bitly.com.vn/bhcj2y
+
 - Sử dụng để truyền dữ liệu từ component cha vào component con
 - Cần import vào trước khi sử dụng `import { Input } from '@angular/core';`
 - Cú pháp [bien-truyen-di]="function"
@@ -315,6 +317,8 @@ https://stackblitz.com/
 ```
 
 ##### Componet con - child component
+Link demo: https://bitly.com.vn/bhcj2y
+
 - Trong componet con `item-detail.component.ts`
 ```js
 import { Component, Input } from '@angular/core'; // Đầu tiên, import Input
@@ -391,4 +395,17 @@ export class AppComponent {
   <li *ngFor="let item of items">{{item}}</li>
 </ul>
 ```
+
+## Pipi - biến đổi dữ liệu trước khi hiển thị cho user
+link demo: https://bitly.com.vn/nok406
+- Dùng để: biến đổi dữ liệu trước khi hiển thị cho người dùng
+- Nhận vào 1 giá trị và trả ra ngoài 1 giá trị khác
+- Cần import module `@angular/common`
+- Cách sử dụng có sẳn của angular: 
+In hoa `uppercase`, thường `lowercase`, viết hoa chữ đầu `titlecase`, cắt kí tự `slice`<br>
+Xử lý số thực `decimal`, phần trăm `percent`<br>
+Xử lý ngày tháng `date`<br>
+Hiển thị dữ liệu dạng Object, Json `Json`<br>
+Kết hợp các Pipe<br>
+Có thể tự định nghĩa 1 pipe (custom pipe)
 
