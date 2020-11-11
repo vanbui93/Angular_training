@@ -300,6 +300,8 @@ changeColor(){
     this.isSpecial=!this.isSpecial
 }
 ```
+## Từ đây bắt đầu training trên stackblitz
+https://stackblitz.com/
 
 ## Input
 - Sử dụng để truyền dữ liệu từ component cha vào component con
@@ -337,3 +339,56 @@ export class AppComponent {
   currentItem = 'Television';
 }
 ```
+
+## OutPut
+- Sử dụng để : truyền dữ liệu từ component con ra ngoài component cha
+- Cần import `Output`, `EventEmmitter` trước khi sử dụng `import { Output, EventEmitter } from '@angular/core';`
+- Cú pháp: `() = ""`
+- Xem ví dụ dưới như mối quan hệ giữa component cha và component con
+```js
+<parent-component>
+  <child-component (newItemEvent)="addItem($event)"></child-component>
+</parent-component>
+```
+##### Trong component con - child component
+- Trong component con `item-output.component.ts`
+```js
+import { Output, EventEmitter } from '@angular/core';
+
+export class ItemOutputComponent {
+  @Output() newItemEvent = new EventEmitter<string>();
+
+  addNewItem(value: string) {
+    this.newItemEvent.emit(value);
+  }
+}
+```
+
+- Trong component con `item-output.component.html`
+```js
+<label>Add an item: <input #newItem></label>
+<button (click)="addNewItem(newItem.value)">Add to parent's list</button>
+```
+
+##### Trong component cha - parent component
+- Trong component cha `app.component.ts`
+
+```js
+export class AppComponent {
+  items = ['item1', 'item2', 'item3', 'item4'];
+
+  addItem(newItem: string) {
+    this.items.push(newItem);
+  }
+}
+```
+- Trong component cha `app.component.html`
+
+```js
+<app-item-output (newItemEvent)="addItem($event)"></app-item-output>
+
+<ul>
+  <li *ngFor="let item of items">{{item}}</li>
+</ul>
+```
+
