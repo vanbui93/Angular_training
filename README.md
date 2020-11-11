@@ -408,4 +408,10 @@ Xử lý ngày tháng `date`<br>
 Hiển thị dữ liệu dạng Object, Json `Json`<br>
 Kết hợp các Pipe<br>
 Có thể tự định nghĩa 1 pipe (custom pipe)
+>Note: Decimal `{{amout| number : '1.0-3' }}`<br>`số | number : '1.0-3'` //min.min-max<br>
+            //1 : phần nguyên, nếu thiếu tự thêm số 0<br>
+            //0 : phần thập phân, nếu thiếu tự thêm số 0<br>
+            //3 : số thập phân tối đa
+>Note: Percent : số | percent : '1.0-3' //tự * 100 và thêm dấu %<br>
 
+Xem thêm về các pipe https://angular.io/api/common#pipes
