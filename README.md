@@ -300,3 +300,40 @@ changeColor(){
     this.isSpecial=!this.isSpecial
 }
 ```
+
+## Input
+- Sử dụng để truyền dữ liệu từ component cha vào component con
+- Cần import vào trước khi sử dụng `import { Input } from '@angular/core';`
+- Cú pháp [bien-truyen-di]="function"
+- Xem ví dụ dưới như mối quan hệ giữa component cha và component con
+```js
+<parent-component>
+  <child-component [item]="currentItem"></child-component>
+</parent-component>
+```
+
+##### Componet con - child component
+- Trong componet con `item-detail.component.ts`
+```js
+import { Component, Input } from '@angular/core'; // Đầu tiên, import Input
+export class ItemDetailComponent {
+  @Input() item: string; // Khai báo thuộc tính @Input()
+}
+```
+- Trong componet con `item-detail.component.html`
+```js
+<p>
+  Today's item: {{item}}
+</p>
+```
+##### Componet cha - parent component
+- Trong component cha `app.component.html`
+```js
+<app-item-detail [item]="currentItem"></app-item-detail>
+```
+- Trong component cha `app.component.ts`
+```js
+export class AppComponent {
+  currentItem = 'Television';
+}
+```
