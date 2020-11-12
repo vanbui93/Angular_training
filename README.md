@@ -396,7 +396,7 @@ export class AppComponent {
 </ul>
 ```
 
-## Pipi - biến đổi dữ liệu trước khi hiển thị cho user
+## Pipe - biến đổi dữ liệu trước khi hiển thị cho user
 link demo: https://bitly.com.vn/nok406
 - Dùng để: biến đổi dữ liệu trước khi hiển thị cho người dùng
 - Nhận vào 1 giá trị và trả ra ngoài 1 giá trị khác
@@ -415,3 +415,21 @@ Có thể tự định nghĩa 1 pipe (custom pipe)
 >Note: Percent : số | percent : '1.0-3' //tự * 100 và thêm dấu %<br>
 
 Xem thêm về các pipe https://angular.io/api/common#pipes
+
+## Pipe - Tự xây dựng pipe
+```sh
+ng g pipe format-name
+```
+- Ví dụ sau đây dùng để cắt 1 chuỗi sau đó thêm dấu '...'<br>
+demo link https://bom.to/YjC1IQs
+
+```js
+<td>{{content | formatDataPipe : 0: 40}}</td>
+
+transform(value: any, start?: any, end?: any): any {
+    return value.substr(start, end) + "..."; //substr -> dùng cắt chuỗi, từ vị trí start đến vị trí end
+}
+
+//content: Netflix cho biết ủng hộ việc triển khai những cơ chế cần thiết để các doanh nghiệp
+//result: Netflix cho biết ủng hộ việc triển khai ...
+```
