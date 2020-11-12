@@ -444,3 +444,8 @@ Xem demo: https://bitly.com.vn/25kztm
 Xem demo: https://bitly.com.vn/3uc44t
 
 ## Thư viện lodash
+lodash là thư viện của javascript https://lodash.com/
+- Import lodash ở file muốn dùng `import "lodash"`
+- khai báo `declare var_;`
+- Sử dụng thông qua: `_.ten_ham()`
+- link demo https://bitly.com.vn/lyeb05
