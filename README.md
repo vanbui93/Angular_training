@@ -449,3 +449,36 @@ lodash là thư viện của javascript https://lodash.com/
 - khai báo `declare var_;`
 - Sử dụng thông qua: `_.ten_ham()`
 - link demo https://bitly.com.vn/lyeb05
+
+## Template Reference Variables - @ViewChild
+- Một Template Reference Variables là một tham chiếu đến một phần tử DOM hoặc directive trong template.<br>
+Sử dụng biến tham chiếu , ta có thể truy cập vào các giá trị  thuộc tính phần tử DOM
+- Để thao tác với Template Variables có 2 cách : <br>
+**Tại Template**: `#name` hoặc `ref-name`<br>
+**Tại Component** : `@ViewChild("name1")name2:ElemementRef`
+
+- Ví dụ cách 1
+```js
+//.html
+<input type="text" class="form-control mb-2" #txtName>
+<button class="btn btn-danger" (click)="handleGetData(txtName.value)">Lấy dữ liệu</button>
+
+//.ts
+handleGetData(txtName) {
+    console.log(txtName);
+}
+
+```
+
+- Ví dụ cách 2 - @ViewChild
+```js
+//.html
+<input type="text" class="form-control mb-2" #txtName>
+<button class="btn btn-danger" (click)="onGetDataView()">Lấy dữ liệu</button>
+
+//.ts
+@ViewChild("txtName") name: ElementRef;
+  onGetDataView() {
+    console.log(this.name.nativeElement.value);
+  }
+```
