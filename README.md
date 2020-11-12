@@ -433,3 +433,14 @@ transform(value: any, start?: any, end?: any): any {
 //content: Netflix cho biết ủng hộ việc triển khai những cơ chế cần thiết để các doanh nghiệp
 //result: Netflix cho biết ủng hộ việc triển khai ...
 ```
+
+## Custom Pipe
+- Tự xây dựng 1 custom pipe theo riêng mình.
+
+#### Filter pipe
+Xem demo: https://bitly.com.vn/25kztm
+
+#### Sort Pipe
+Xem demo: https://bitly.com.vn/3uc44t
+
+## Thư viện lodash
