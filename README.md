@@ -451,6 +451,7 @@ lodash là thư viện của javascript https://lodash.com/
 - link demo https://bitly.com.vn/lyeb05
 
 ## Template Reference Variables - @ViewChild
+- link demo: https://bitly.com.vn/usggho
 - Một Template Reference Variables là một tham chiếu đến một phần tử DOM hoặc directive trong template.<br>
 Sử dụng biến tham chiếu , ta có thể truy cập vào các giá trị  thuộc tính phần tử DOM
 - Để thao tác với Template Variables có 2 cách : <br>
