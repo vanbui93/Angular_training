@@ -483,3 +483,37 @@ handleGetData(txtName) {
     console.log(this.name.nativeElement.value);
   }
 ```
+
+## Lifecycle hook
+Link demo: https://bom.to/sJ1iiob
+- Là các phương thức của Directive và Component như việc tạo ra, thay đổi, hủy
+- Mỗi hook sẽ thuộc về 1 interface. Ex: ngOnInit thuộc OnInit
+![alt text](https://v2.angular.io/resources/images/devguide/lifecycle-hooks/hooks-in-sequence.png)
+<br>
+
+```sh
+-  Contructor: Gọi trước tất cả Lifecycle hook, thường dùng để tiêm các Dependency Injection như các Service.
+Chú ý: đây không phải là 1 hook method
+
+- ngOnInit:
+    - Thời gian: 
+        - Khởi tạo directive/component sau khi hiển thị lần đầu và set các thuộc tính đầu vào của directive/component
+        - Chỉ gọi 1 lần duy nhất, sau khi hook ngOnChange() được gọi lần đầu tiên
+    - Dùng để khởi tạo giá trị
+
+- ngOnDestroy: 
+    - Được gọi khi component bị hủy, dùng để hủy các kết nối, giải phóng bộ nhớ
+    - Vd: component kết nối api, database, route -> nên hủy để giải phóng bộ nhớ
+```
+
+```sh
+- ngOnChange: được thực hiện khi **Input** có sự thay đổi, được quản lý thông qua đối tượng **SimpleChange**, được gọi trước cả **ngOninit**
+    - Cho ta 1 đổi tượng kiểu SimpleChange
+    - SimpleChange: thuộc về @angular/core
+    - Dùng để xử lý khi @input có sự thay đổi
+        - currenValue: giá trị hiện tại
+        - previosValue: giá trị trước đó
+        - isFirstChange(): thay đổi lần đầu tiên ? True, False
+
+- ngDoCheck: được gọi sau ngOnChange và ngOnInit, cứ mỗi lần gọi ngOnChange sẽ được gọi
+```
