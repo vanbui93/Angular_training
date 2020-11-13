@@ -507,7 +507,7 @@ Chú ý: đây không phải là 1 hook method
     - Được gọi khi component bị hủy, dùng để hủy các kết nối, giải phóng bộ nhớ
     - Vd: component kết nối api, database, route -> nên hủy để giải phóng bộ nhớ
 ```
-#### **ngOnChange**, **ngDoCheck**
+#### ngOnChange, ngDoCheck
 ```sh
 - ngOnChange: được thực hiện khi **Input** có sự thay đổi, được quản lý thông qua đối tượng **SimpleChange**, được gọi trước cả **ngOninit**
     - Cho ta 1 đổi tượng kiểu SimpleChange
@@ -518,4 +518,27 @@ Chú ý: đây không phải là 1 hook method
         - isFirstChange(): thay đổi lần đầu tiên ? True, False
 
 - ngDoCheck: được gọi sau ngOnChange và ngOnInit, cứ mỗi lần gọi ngOnChange sẽ được gọi
+```
+
+#### ngContent
+- Truyền **html** từ component cha sang component con, giống như thuộc tính {props.children} ở reactJS
+- Component con sẽ thừa kế từ component cha, sử dụng thẻ `<ng-content></ng-content>`
+- Dùng `<ng-content select=".ten-class"></ng-content>` //để lấy 1 phần tử nào đó
+```sh
+    .class
+    #id
+    ten-tag     //ex: h1,span
+    [ten-attribute]      //ex: <span myAttribute></span>
+    [ten-attribute=value]
+    [attribute1][attribute2]
+```
+
+```js
+//component cha = app.component.html
+<app-ng-content>
+    Đây là nội dung sẽ hiển thị trong thẻ ng-content
+</app-ng-content>
+
+//component con = ng-content.component.html
+<ng-content></ng-content>
 ```
