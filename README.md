@@ -1,3 +1,38 @@
+## Table of Contents
+- [Cài đặt môi trường](#cài-đặt-môi-trường)
+- [Binding - data](#binding---data)
+- [Style - binding](#style---binding)
+- [Truyền sự kiện từ view sang component thông qua event binding](#truyền-sự-kiện-từ-view-sang-component-thông-qua-event-binding)
+- [Event Binding - Handle Click form](#event-binding---handle-click-form)
+- [Two way binding - binding 2 chiều](#two-way-binding---binding-2-chiều)
+- [Build-in Directives](#build-in-directives)
+- [Structural directives](#structural-directives)
+- [ngIF -> else ?](#ngif---else-)
+- [ngFor](#ngfor)
+- [ngSwichCase](#ngswichcase)
+- [Attribute directives](#attribute-directives)
+- [ngClass](#ngclass)
+- [ngStyle](#ngstyle)
+- [Input](#input)
+- [OutPut](#output)
+- [Pipe - biến đổi dữ liệu trước khi hiển thị cho user](#pipe---biến-đổi-dữ-liệu-trước-khi-hiển-thị-cho-user)
+- [Pipe - Tự xây dựng pipe](#pipe---tự-xây-dựng-pipe)
+- [Custom Pipe
+](#custom-pipe)
+- [Filter pipe](#filter-pipe)
+- [Sort Pipe](#sort-pipe)
+- [Thư viện lodash](#thư-viện-lodash)
+- [Template Reference Variables - @ViewChild](#template-reference-variables---viewchild)
+- [Lifecycle hook](#lifecycle-hook)
+- [ngOnInit,ngOnDestroy](#ngoninitngondestroy)
+- [ngOnChange, ngDoCheck](#ngonchange-ngdocheck)
+- [ngContent](#ngcontent)
+- [ngAfterContentInit](#ngaftercontentinit)
+- [ContentChild](#contentchild)
+- [ngAfterContentChecked](#ngaftercontentchecked)
+- []()
+
+
 ## Cài đặt môi trường
 - cài đặt `nodejs`
 - cài đặt typescript
@@ -573,7 +608,7 @@ ngAfterContentInit() {
 ```
 
 #### ngAfterContentChecked
-- Được gọi nhiều lần, mỗi khi có **update giá trị** trong component con
+- Được gọi nhiều lần, mỗi khi có **update giá trị** trong ng-content>
 - Chỉ dành cho component
 
 - Ví dụ dưới mỗi lần click vào `onClick()`,  giá trị `{{content}}` được update <br>
