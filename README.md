@@ -645,4 +645,20 @@ Link demo: https://bom.to/TtGwYYu
 - Chỉ dành cho component
 Link demo: https://bom.to/TtGwYYu
 
+## Servive - Là một ứng dụng của DI
+- Dependency Injection: là một design pattern quan trọng để xây dựng ứng dụng<br>
+Angular sở hữu DI, **Giảm sự phụ thuộc giữa các lớp với nhau**<br>
+- Giảm thiểu việc lặp code
+- Angular tích hợp sẳn DI<br>
+- Cách sử dụng service: 
+```sh
+- Khai báo kèm theo @Injectable
+- Khai báo provider trong module hoặc provider trong component (nếu chỉ xài riêng cho component đó)
+- Inject vào constructor để sử dụng mà không cần khởi tạo đối tượng.
+```
+- Cú pháp tạo
+```sh
+ng g service my-new-service
+```
 
+Link demo: https://bom.to/zfA3IuA
