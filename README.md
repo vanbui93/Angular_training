@@ -521,6 +521,7 @@ Chú ý: đây không phải là 1 hook method
 ```
 
 #### ngContent
+link demo https://bom.to/8KXjDs5
 - Truyền **html** từ component cha sang component con, giống như thuộc tính {props.children} ở reactJS
 - Component con sẽ thừa kế từ component cha, sử dụng thẻ `<ng-content></ng-content>`
 - Dùng `<ng-content select=".ten-class"></ng-content>` //để lấy 1 phần tử nào đó
@@ -541,4 +542,55 @@ Chú ý: đây không phải là 1 hook method
 
 //component con = ng-content.component.html
 <ng-content></ng-content>
+```
+#### ngAfterContentInit
+- Mỗi lần **component** con được gọi, nó sẽ chạy
+- Sử dụng `ng-content` để kiểm tra - Sử dụng **ContentChild** (Kiểu ElementRef) - Template Reference Variable
+- **Chỉ được gọi 1 lần duy nhất** khi component con được render
+- Chỉ dành cho component
+
+##### ContentChild
+- Sử dụng giống ViewChild, tuy nhiên dùng để **reference** lấy giá trị từ component cha
+- ví dụ link demo https://bom.to/D7EGdyS
+```js
+//component cha
+//ng-content.component.html
+<parent-component>
+  <child-component>
+    <h3  #contentValue>Nội dung: {{value}}</h3>
+  </child-component>
+</parent-component>
+//ng-content.component.ts
+public value : string = 'ABC'
+
+
+//component con
+@ContentChild("contentValue") contentValue: ElementRef;
+
+ngAfterContentInit() {
+    console.log(this.contentValue);
+  }
+```
+
+#### ngAfterContentChecked
+- Được gọi nhiều lần, mỗi khi có **update giá trị** trong component con
+- Chỉ dành cho component
+
+- Ví dụ dưới mỗi lần click vào `onClick()`,  giá trị `{{content}}` được update <br>
+**ngAfterContentChecked** được gọi
+
+```js
+//app.component.html
+<app-ng-content>
+ <h2 #contentValue>ContentChild: {{content}}</h2>
+</app-ng-content>
+
+//app.component.ts
+public content: string = "ABC";
+<input type="text" class="form-control" #textInput />
+<button class="btn btn-danger" (click)="onClick(textInput.value)">Click me !</button>
+
+onClick(value) {
+    this.content = value;
+  }
 ```
