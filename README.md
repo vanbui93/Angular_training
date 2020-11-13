@@ -520,7 +520,7 @@ handleGetData(txtName) {
 ```
 
 ## Lifecycle hook
-Link demo: https://bom.to/sJ1iiob
+Link demo: https://bom.to/PJJXCJd
 - Là các phương thức của Directive và Component như việc tạo ra, thay đổi, hủy
 - Mỗi hook sẽ thuộc về 1 interface. Ex: ngOnInit thuộc OnInit<br><br>
 
@@ -556,7 +556,7 @@ Chú ý: đây không phải là 1 hook method
 ```
 
 #### ngContent
-link demo https://bom.to/8KXjDs5
+link demo https://bom.to/0UtyXxh
 - Truyền **html** từ component cha sang component con, giống như thuộc tính {props.children} ở reactJS
 - Component con sẽ thừa kế từ component cha, sử dụng thẻ `<ng-content></ng-content>`
 - Dùng `<ng-content select=".ten-class"></ng-content>` //để lấy 1 phần tử nào đó
@@ -580,13 +580,13 @@ link demo https://bom.to/8KXjDs5
 ```
 #### ngAfterContentInit
 - Mỗi lần **component** con được gọi, nó sẽ chạy
-- Sử dụng `ng-content` để kiểm tra - Sử dụng **ContentChild** (Kiểu ElementRef) - Template Reference Variable
+- Sử dụng `ng-content` để kiểm tra - Sử dụng `@ContentChild` (Kiểu ElementRef) - Template Reference Variable
 - **Chỉ được gọi 1 lần duy nhất** khi component con được render
 - Chỉ dành cho component
 
 ##### ContentChild
 - Sử dụng giống ViewChild, tuy nhiên dùng để **reference** lấy giá trị từ component cha
-- ví dụ link demo https://bom.to/D7EGdyS
+- ví dụ link demo https://bom.to/0UtyXxh
 ```js
 //component cha
 //ng-content.component.html
@@ -629,3 +629,20 @@ onClick(value) {
     this.content = value;
   }
 ```
+
+#### ngAfterView
+Được gọi mỗi khi **View có sự thay đổi**<br>
+- Chính là phần view hiện tại
+- Xử lý **Template** + **Template Reference Variables**
+- Sử dụng `@Viewchild`
+- Chú ý khi dùng template ref (#tên-biến) cũng sử dụng ViewChild<br>
+vd: `<my-component #abc>`
+
+Link demo: https://bom.to/TtGwYYu
+
+#### ngAfterViewChecked
+- Được gọi nhiều lần
+- Chỉ dành cho component
+Link demo: https://bom.to/TtGwYYu
+
+
