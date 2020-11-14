@@ -662,3 +662,33 @@ ng g service my-new-service
 ```
 
 Link demo: https://bom.to/zfA3IuA
+
+```js
+//first.component.html
+<button class="btn btn-danger" (click)="handleClick()">Click me !</button>
+
+//first.component.ts
+import { LogginServiceService } from "./../services/loggin-service.service";
+
+export class FirstComponent implements OnInit {
+  constructor(private _LogginServiceService: LogginServiceService) {}
+
+  handleClick() {
+    this._LogginServiceService.loggin();
+  }
+}
+
+
+//loggin-service.service
+import { Injectable } from "@angular/core";
+
+@Injectable()
+export class LogginServiceService {
+  constructor() {}
+
+  loggin(): void {
+    console.log("hello");
+  }
+}
+
+```
