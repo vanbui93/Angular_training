@@ -689,6 +689,102 @@ export class LogginServiceService {
   loggin(): void {
     console.log("hello");
   }
+
 }
 
 ```
+
+- Link demo bài tập thực tế: https://bom.to/BrREqqI
+
+
+## Route (Routing)
+- Thực hiện chuyển trang, thay đổi component mà không cần load lại<br>
+- Trong nav cần gắn `[routerLink]="['/']` thay cho href
+- Cần tạo 1 mãng các routes
+- import vào trong app.module `imports:RouterModule.forRoot(appRoutes)]`
+
+```js
+//app.module.ts
+const appRoutes: Routes = [
+  {
+    path: "",
+    redirectTo: "/index",
+    pathMatch: "full"
+  },
+  {
+    path: "index",
+    component: HomeComponent
+  },
+  {
+    path: "about",
+    component: AboutComponent
+  },
+  {
+    path: "**",
+    component: NotFoundComponent
+  }
+];
+
+@NgModule({
+  imports:RouterModule.forRoot(appRoutes)]
+})
+```
+
+```js
+//app.component.html
+app.component.html
+
+//header.component.html
+<ul class="navbar-nav">
+    <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/about" [routerLink]="['/about']">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/contact" [routerLink]="['/contact']">Contact</a>
+    </li>
+</ul>
+```
+- Muốn thêm class active thêm vào `routerLinkActive="active"`
+
+```js
+<ul class="navbar-nav">
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" [routerLink]="['/index']">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" href="/about" [routerLink]="['/about']">About</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" href="/contact" [routerLink]="['/contact']">Contact</a>
+    </li>
+</ul>
+```
+
+### Cách 2: có thể chuyển trang bằng Event Binding
+- Cần Import Router từ @angular/router
+- Inject router như 1 service
+- Sử dụng navigate: `navigate(['/ten_router','params'])`
+- Sử dụng navigateByUrl: `navigateByUrl('ten_router')`
+
+```js
+<button type="button" class="btn mr-2" (click)="navigate('index')">Home</button>
+<button type="button" class="btn mr-2" (click)="navigate('about')">About</button>
+<button type="button" class="btn mr-2" (click)="navigate('contact')">Contact</button>
+
+
+//app.component.ts
+import { Router } from "@angular/router";
+
+export class AppComponent {
+  constructor(public _Router: Router) {}
+
+  navigate(url: string) {
+    // this._Router.navigate([url]); //cái nào cũng ok
+    this._Router.navigateByUrl(url);
+  }
+}
+```
+
