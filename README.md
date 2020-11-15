@@ -792,7 +792,7 @@ export class AppComponent {
 ```
 
 ## Router - lấy tham số params trên router
-Link demo : https://bom.to/f1pcSIv
+Link demo : https://bom.to/IS8f5XX
 ```js
 // app.module
 const appRoutes: Routes = [
@@ -912,6 +912,7 @@ import { Subscription } from "rxjs";
 
 public subscription: Subscription;
 
+//vì Subscription luôn luôn chạy, nên khi ko sử dụng nên unsubscribe để tránh bị quá tải
 ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe;
@@ -928,4 +929,69 @@ this.subscription = this._ActivatedRoute.params.subscribe(data => {
 }
 ```
 
-Link demo https://bom.to/yRWMM4S
+Link demo https://bom.to/YQP4l1M
+
+## Router - Tham số dạng ? (Query Params)
+- Bắt buộc cần có `routerLink`
+```js
+// products.component.html
+<div class="row">
+  <div class="col-6">
+    <label for="">Name: </label
+    ><input type="text" class="form-control" [(ngModel)]="name" />
+    <label for="">Price: </label
+    ><input type="text" class="form-control" [(ngModel)]="price" />
+    <button class="btn btn-primary mb-3 mt-3"
+      [routerLink]="['/products']"
+      [queryParams]="{name: name ? name : '', price: price ? price : ''}"
+    >Search</button>
+  </div>
+</div>
+```
+
+- Cách 1: Truyền bên Template:<br>
+Cú pháp: [queryParams]="{key1: value1, key2: value2}"<br>
+ex: `[queryParams] = "{page: 2, sortby: 'name'}"
+
+- Cách 2: Truyền bên component<br>
+Cần import Router từ @angular/core<br>
+Inject router như 1 service<br>
+Sử dụng navigate: `navigate(['ten_route', params],{queryParams: {key1: value1,...}});`
+```js
+<button class="btn btn-success mb-3 mt-3"
+  [routerLink]="['/products']"
+  (click)="onSeach()"
+>Search</button>
+```
+
+- Lấy params trên url truyền vào hàm getAllproducts() để filter
+```js
+//products.component.ts
+ngOnInit() {
+    this.queryParamsSubscription = this.activatedRoute.queryParams.subscribe(
+      data => {
+        let name = data.name;
+        let price = data.price;
+        this.name = name;
+        this.price = price;
+        this.products = this._ProductService.getAllproducts(name, price); //lấy products list hiển thị
+      }
+    );
+  }
+
+//product.service.ts
+  getAllproducts(name?: string, price?: number) {
+    let result: Product_Class[] = this.products;
+    if (name) {
+      result = this.products.filter(x => {
+        return x.name.toLowerCase().indexOf(name.toLowerCase()) !== -1;
+      });
+    }
+    if (price) {
+      result = this.products.filter(x => {
+        return (x.price == price);
+      });
+    }
+    return result;
+  }
+```
