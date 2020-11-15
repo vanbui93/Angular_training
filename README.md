@@ -995,3 +995,41 @@ ngOnInit() {
     return result;
   }
 ```
+
+## Router (Routing) : Child Router
+
+- Truy cập vào link thứ cấp ex products/list or products/id
+
+```js
+{
+  path: "products",
+  children: [
+    {
+      path: "",
+      redirectTo: "/products/list",
+      pathMatch: "full"
+    },
+    {
+      path: "list",
+      component: ProductsComponent
+    },
+    {
+      path: ":id",
+      component: ProductDetailComponent
+    }
+  ]
+}
+```
+
+- Back to list
+```js
+import { Router } from "@angular/router";
+
+constructor(public routerService: Router) {}
+
+<button class="btn btn-primary ml-3" (click)="onBackToList()">Back to list</button>
+
+onBackToList() {
+    this.routerService.navigate(["/products/list"]);
+  }
+```
