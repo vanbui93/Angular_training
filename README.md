@@ -886,3 +886,46 @@ export class ProductDetailComponent implements OnInit {
     return result;
   }
 ```
+
+### Route - Sử dụng hàm subcrible()
+>note: `snapshot` ở trên `ActivatedRoute` không áp dụng chuyển trang trên cùng 1 router<br>
+Cần sử dụng hàm subcrible để theo dõi sự thay đổi params<br>
+```js
+ngOnInit() {
+    // this.handleParamsRouteBySnapShot();
+    this.handleParamsSubs();
+  }
+
+  handleParamsSubs() {
+    this._ActivatedRoute.params.subscribe(data => {
+      //subscribe theo dõi sự thay đổi của params
+      console.log(data);
+      let id_params = data.id;
+      this.products = this._ProductService.getProductById(id_params);
+    });
+  }
+```
+
+- phương thức `subcrible` luôn luôn lắng nghe, nên sẽ có 1 đối tượng luôn luôn quản lý nó là `Subscription`
+```js
+import { Subscription } from "rxjs";
+
+public subscription: Subscription;
+
+ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe;
+    }
+  }
+
+handleParamsSubs() {
+this.subscription = this._ActivatedRoute.params.subscribe(data => {
+    //subscribe theo dõi sự thay đổi của params
+    console.log(data);
+    let id_params = data.id;
+    this.products = this._ProductService.getProductById(id_params);
+});
+}
+```
+
+Link demo https://bom.to/yRWMM4S
