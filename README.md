@@ -698,6 +698,9 @@ export class LogginServiceService {
 
 
 ## Route (Routing)
+
+Link demo https://bom.to/2JjHYee
+
 - Thực hiện chuyển trang, thay đổi component mà không cần load lại<br>
 - Trong nav cần gắn `[routerLink]="['/']` thay cho href
 - Cần tạo 1 mãng các routes
@@ -788,3 +791,46 @@ export class AppComponent {
 }
 ```
 
+## Router - lấy tham số params trên router
+Link demo : https://bom.to/f1pcSIv
+```js
+// app.module
+const appRoutes: Routes = [
+  {
+    path: "products",
+    component: ProductsComponent
+  },
+  {
+    path: "products/:id",
+    component: ProductDetailComponent
+  }
+]
+```
+
+```js
+//products.component.html
+<tr *ngFor="let item of products">
+    <td>{{item.id}}</td>
+    <td>{{item.name}}</td>
+    <td>{{item.price | currency: 'VND': true}}</td>
+    <td>{{item.status ? "Active" : "Deactive"}}</td>
+</tr>
+```
+
+```js
+//products.component.ts
+import { Component, OnInit } from "@angular/core";
+import { Product_Class } from "../../models/product.class";
+import { ProductService } from "../../services/product.service";
+
+export class ProductsComponent implements OnInit {
+  public products: Product_Class[] = [];
+
+  constructor(public _ProductService: ProductService) {}
+
+  ngOnInit() {
+    let getProducts = (this.products = this._ProductService.getAllproducts());
+    console.log(getProducts);
+  }
+}
+```
