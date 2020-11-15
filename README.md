@@ -834,3 +834,55 @@ export class ProductsComponent implements OnInit {
   }
 }
 ```
+
+#### Tiến hành lấy tham số trên router - ActivatedRoute - Snapshot
+- Khai báo `ActivatedRoute` từ `@angular/router`<br>
+để lấy url bất cứ thứ gì bạn nhập vào<br>
+- Tiến hành Inject như 1 Service
+- Lấy tham số `params` trên đường dẫn (ex: /products/1)
+- Sau khi có tham số đường dẫn, tiến hành kiểm tra `params` với `id của products`<br>
+=> nếu trùng khớp thì lấy ra product của id đó
+
+```js
+//product-detail.component.ts
+import { ActivatedRoute } from "@angular/router";
+
+export class ProductDetailComponent implements OnInit {
+  public products: Product_Class = null;
+
+  constructor(
+    public _ActivatedRoute: ActivatedRoute,
+    public _ProductService: ProductService
+  ) {}
+
+  ngOnInit() {
+    let id_params = +this._ActivatedRoute.snapshot.params.id;
+    this.products = this._ProductService.getProductById(id_params); //truyền id_params
+  }
+}
+```
+
+```js
+//product-detail.component.html  => lúc này product-detail đã có data
+<h1>Id: {{products.id}}</h1>
+<h2>{{products.name}}</h2>
+<h3>{{products.price | currency: 'VND': true}}</h3>
+<h4>{{products.status ? 'Active' : 'Deactive'}}</h4>
+```
+
+```js
+//product.service.ts
+
+  getProductById(id_params: number) {
+    let result = null;
+    for (var i = 0; i < this.products.length; i++) {
+
+    //kiểm tra id_params = id của list product => trả về đúng object product đó
+      if (this.products[i].id == id_params) {  
+        result = this.products[i];
+        break;
+      }
+    }
+    return result;
+  }
+```
