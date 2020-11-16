@@ -1021,6 +1021,31 @@ ngOnInit() {
 }
 ```
 
+- Cách 2: có thể chia folder thư mục theo dạng `Product` => `Product List` => `Product Detail`<br>
+Ở trong products.component.html cần có router chuyển hướng cho các component con `<router-outlet></router-outlet>`
+
+```js
+{
+  path: "products",
+  component: ProductsComponent,
+  children: [
+    {
+      path: "",
+      redirectTo: "/products/list",
+      pathMatch: "full"
+    },
+    {
+      path: "list",
+      component: ProductsListComponent
+    },
+    {
+      path: ":id",
+      component: ProductDetailComponent
+    }
+  ]
+}
+```
+
 - Back to list
 ```js
 import { Router } from "@angular/router";
@@ -1033,3 +1058,4 @@ onBackToList() {
     this.routerService.navigate(["/products/list"]);
   }
 ```
+
