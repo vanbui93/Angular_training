@@ -1059,3 +1059,37 @@ onBackToList() {
   }
 ```
 
+#### Đổ dữ liệu ra product-edit
+- Dựa vào hàm `handleParams()` lấy params url so sánh với param của products list `getProductById(id_params)`<br>
+Nếu trùng thì lấy product đó ra
+```js
+<form action="">
+	<h3>Edit Product</h3>
+	<div class="form-group">
+		<label for="">Name</label>
+		<input type="text" class="form-control" [(ngModel)]= "products.name" [ngModelOptions]="{standalone: true}">
+  </div>
+		<div class="form-group">
+			<label for="">Price</label>
+			<input type="text" class="form-control" [(ngModel)]= "products.price" [ngModelOptions]="{standalone: true}">
+  </div>
+			<div class="form-group">
+				<label for="">Status</label>
+				<select name="" class="form-control" [(ngModel)]="products.status" [ngModelOptions]="{standalone: true}">
+          <option value="true">Active</option>
+          <option value="false">Deactive</option>
+        </select>
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+handleParams() {
+  //Lấy tham số id trên param, vì link hiện tại là `product/id/edit` cần .parent để lấy `product/id`
+  this.subscription = this.activatedRouteService.parent.params.subscribe(
+    (params: Params) => {
+      let id_params = params.id;
+      this.products = this.productService.getProductById(id_params);
+    }
+  );
+}
+```
