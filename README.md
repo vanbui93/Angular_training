@@ -1228,3 +1228,6 @@ import { SharedModule } from "./../../shared/shared.module";
 //products.component.html => ở page này chỉ cần sử dụng mà ko cần import gì
 <td>{{item.name | capitalize}}</td>
 ```
+## HttpClient
+- Cần import `HttpClientModule` từ `@angular/common/http`
+- Các thư viện sử dụng: `HttpClient`, `HttpErrorResponse` từ `@angular/common/http`
