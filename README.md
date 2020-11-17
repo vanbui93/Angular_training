@@ -1124,7 +1124,7 @@ canActivate: [AuthGuard]
 ```
 
 ## CanDeactivate
-- Là trường hợp người lại của canActivate, kiểm tra xem người dùng thoát ra khỏi router đó hay không ?
+- Là trường hợp ngược lại của canActivate, kiểm tra xem người dùng thoát ra khỏi router đó hay không ?
 - Là 1 service, cần khai báo provider
 - Cú pháp `implement CanDeactive<ten-component>` override lại canActivate
 - Khi truy cập vào 1 route bất kì, trả về `true` có thể thoát ra, ngược lại không thể thoát
@@ -1177,4 +1177,54 @@ import { RouterModule } from "@angular/router";
 })
 ```
 
-## Xây dựng module dùng chung
+## Xây dựng module dùng chung SharedModule
+- Tạo thư mục Module bằng angular-cli
+```sh
+ng g module my-module
+```
+
+- Tiến hành import các component, service, pipe của các module khác vào
+- Muốn module khác sử dụng được SharedModule => dùng exports
+ex: 
+```js
+declarations: [
+  Pipe, 
+  Directive,
+  FormartNumberPipe,
+
+]
+exports: [
+  Pipe, 
+  Directive,
+  FormartNumberPipe,
+]
+```
+- Ví dụ dưới shared -> Pipes -> capitalize.pipe
+Link demo https://bom.to/WRUm0bK
+```js
+// shared.module.ts
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { CapitalizePipe } from "./pipes/capitalize.pipe";
+
+@NgModule({
+  imports: [CommonModule],
+  declarations: [CapitalizePipe],
+  exports: [CapitalizePipe] //export để các component khác cũng có thể sử dụng được
+})
+export class SharedModule {}
+
+
+// product-management.module.ts
+import { SharedModule } from "./../../shared/shared.module";
+
+@NgModule({
+  imports: [
+    SharedModule, //khai báo shared ở trước forChild
+    RouterModule.forChild(productRoutes)
+  ]
+});
+
+//products.component.html => ở page này chỉ cần sử dụng mà ko cần import gì
+<td>{{item.name | capitalize}}</td>
+```
