@@ -1155,3 +1155,26 @@ export const appRoutes: Routes = [
   /*....*/
 ]
 ```
+
+## Module
+Link demo: https://bom.to/Ox3NcV2
+- Là một class có khai báo là `@NgModule({})` 
+>Note: khai báo module chạy đầu tiên tại main.js
+- Bao gồm imports:[], declaretions:[], bootstrap: [], providers: [], exports: []
+-- declarations: components, directives, pipes **Chú ý chỉ thuộc về duy nhất 1 angular module**
+
+- Tạo mới module
+```sh
+ng g c module ten-module
+```
+- Cần khai báo RouterModule đưa vào phần imports: []
+
+```js
+import { RouterModule } from "@angular/router";
+
+@NgModule({
+  imports: [RouterModule.forChild(productRoutes)]
+})
+```
+
+## Xây dựng module dùng chung
