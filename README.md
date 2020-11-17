@@ -1060,6 +1060,8 @@ onBackToList() {
 ```
 
 #### Đổ dữ liệu ra product-edit
+Link demo https://bom.to/jNf0VfO
+
 - Dựa vào hàm `handleParams()` lấy params url so sánh với param của products list `getProductById(id_params)`<br>
 Nếu trùng thì lấy product đó ra
 ```js
@@ -1069,20 +1071,21 @@ Nếu trùng thì lấy product đó ra
 		<label for="">Name</label>
 		<input type="text" class="form-control" [(ngModel)]= "products.name" [ngModelOptions]="{standalone: true}">
   </div>
-		<div class="form-group">
-			<label for="">Price</label>
-			<input type="text" class="form-control" [(ngModel)]= "products.price" [ngModelOptions]="{standalone: true}">
+  <div class="form-group">
+    <label for="">Price</label>
+    <input type="text" class="form-control" [(ngModel)]= "products.price" [ngModelOptions]="{standalone: true}">
   </div>
-			<div class="form-group">
-				<label for="">Status</label>
-				<select name="" class="form-control" [(ngModel)]="products.status" [ngModelOptions]="{standalone: true}">
-          <option value="true">Active</option>
-          <option value="false">Deactive</option>
-        </select>
-			</div>
-			<button type="submit" class="btn btn-primary">Save</button>
+  <div class="form-group">
+    <label for="">Status</label>
+    <select name="" class="form-control" [(ngModel)]="products.status" [ngModelOptions]="{standalone: true}">
+      <option value="true">Active</option>
+      <option value="false">Deactive</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
 </form>
-
+```
+```js
 handleParams() {
   //Lấy tham số id trên param, vì link hiện tại là `product/id/edit` cần .parent để lấy `product/id`
   this.subscription = this.activatedRouteService.parent.params.subscribe(
@@ -1092,4 +1095,63 @@ handleParams() {
     }
   );
 }
+```
+
+## Router (Routing) - CanActivate
+- Thường sử dụng cho admin, kiểm tra cho phép người dùng vào route đó hay không
+- Là 1 service, cần khai báo provider
+- Thuộc về angular/router
+- Angular guard đã có sẳn
+Tạo guard theo cú pháp
+```sh
+ng g guard auth
+```
+Sau đó tiến hành inject vào provider
+```js
+// app.module.ts
+import { AuthGuard } from "./services/guard/auth.guard";
+
+providers: [ AuthGuard]
+```
+Sau đó khai báo vào router `app.router.ts`
+
+```js
+// app.routers.ts
+import { AuthGuard } from "./services/guard/auth.guard";
+
+// thêm vào chỗ nào cần bảo vệ đăng nhập
+canActivate: [AuthGuard]
+```
+
+## CanDeactivate
+- Là trường hợp người lại của canActivate, kiểm tra xem người dùng thoát ra khỏi router đó hay không ?
+- Là 1 service, cần khai báo provider
+- Cú pháp `implement CanDeactive<ten-component>` override lại canActivate
+- Khi truy cập vào 1 route bất kì, trả về `true` có thể thoát ra, ngược lại không thể thoát
+
+```js
+//access.guard.ts
+import { CanDeactivate } from "@angular/router";
+import { HomeComponent } from "../../components/home/home.component";
+
+@Injectable()
+export class AccessGuard implements CanDeactivate<HomeComponent> {
+  canDeactivate(): boolean {
+    if (localStorage.getItem("key")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+//router
+export const appRoutes: Routes = [
+  {
+    path: "index",
+    component: HomeComponent,
+    canDeactivate: [AccessGuard] //trả về true mới thoát ra được trang home
+  }
+  /*....*/
+]
 ```
