@@ -1232,6 +1232,9 @@ import { SharedModule } from "./../../shared/shared.module";
 - Cần import `HttpClientModule` từ `@angular/common/http`
 - Các thư viện sử dụng: `HttpClient`, `HttpErrorResponse` từ `@angular/common/http`
 - Thực hiện gọi API như dưới
+Link demo https://bom.to/zWj0V98
+### GET
+
 ```js
 //todo.service.ts
 import { Injectable } from "@angular/core";
@@ -1273,6 +1276,7 @@ export class Todo {
 ```
 
 ```js
+// app.component.ts
 loadData() {
   this.subscription = this.todoService.getAllTodos().subscribe(
     data => {
@@ -1282,5 +1286,20 @@ loadData() {
       this.todoService.handleError(error);
     }
   );
+}
+```
+### POST
+```js
+// todo.service.ts
+addTodo(todo: Todo): Observable<Todo> {
+  return this._http.post<Todo>(this.API, todo);
+}
+
+// app.component.ts
+onAddTodo() {
+  let todo = new Todo(this.title, this.completed);
+  this.subscription = this.todoService.addTodo(todo).subscribe(data => {
+    this.todos.push(data);
+  });
 }
 ```
