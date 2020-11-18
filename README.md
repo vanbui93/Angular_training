@@ -1231,3 +1231,56 @@ import { SharedModule } from "./../../shared/shared.module";
 ## HttpClient
 - Cần import `HttpClientModule` từ `@angular/common/http`
 - Các thư viện sử dụng: `HttpClient`, `HttpErrorResponse` từ `@angular/common/http`
+- Thực hiện gọi API như dưới
+```js
+//todo.service.ts
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Todo } from "./../models/todo.class";
+
+@Injectable()
+export class TodoService {
+  public API: string = "https://5f0963cf445d080016691fb4.mockapi.io/task/todo";
+  constructor(public _http: HttpClient) {}
+
+  getAllTodos(): Observable<Todo[]> {
+    return this._http.get<Todo[]>(this.API);
+  }
+
+  handleError(err) {
+    if (err.error instanceof Error) {
+      console.log("Client-side error", err.error.message);
+    } else {
+      console.log("Server-side error", err.status, err.error);
+    }
+  }
+}
+```
+
+```js
+//todo.class.ts
+export class Todo {
+  public id: number;
+  public title: string;
+  public completed: boolean;
+
+  constructor(title: string, completed: boolean) {
+    this.title = title;
+    this.completed = completed;
+  }
+}
+```
+
+```js
+loadData() {
+  this.subscription = this.todoService.getAllTodos().subscribe(
+    data => {
+      this.todos = data;
+    },
+    error => {
+      this.todoService.handleError(error);
+    }
+  );
+}
+```
