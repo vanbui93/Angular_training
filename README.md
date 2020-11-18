@@ -1303,3 +1303,55 @@ onAddTodo() {
   });
 }
 ```
+
+### PUT
+- Dùng để update date
+```js
+// todo.service.ts
+updateTodo(todo: Todo): Observable<Todo> {
+  return this._http.put<Todo>(`${this.API}/${todo.id}`, todo);
+}
+
+// app.component.ts
+onUpdateTodo() {
+  this.subscription = this.todoService.updateTodo(this.todoEdit).subscribe(
+    data => {
+      let index = this.getIndex(data.id);
+      this.todos[index] = data;
+    },
+    error => {
+      this.todoService.handleError(error);
+    }
+  );
+}
+
+getIndex(id: number): number {
+  let index = 0;
+  this.todos.forEach((item, i) => {
+    if (item.id == id) {
+      index == i;
+    }
+  });
+  return index;
+}
+```
+
+### DELETE
+```js
+// app.component.ts
+deleteTodo(id: number): Observable<Todo> {
+  return this._http.delete<Todo>(`${this.API}/${id}`);
+}
+
+onDeleteTodo(id) {
+  this.subscription = this.todoService.deleteTodo(id).subscribe(
+    data => {
+      let index = this.getIndex(data.id);
+      this.todos.splice(index, 1);
+    },
+    error => {
+      this.todoService.handleError(error);
+    }
+  );
+}
+```
